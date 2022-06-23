@@ -24,11 +24,12 @@ import java.util.HashMap;
 
 public class Database {
     private static ProgressDialog loadingBar;
-    public static void getAllMangas(){
+
+    public static void getAllMangas() {
 
     }
 
-    public static void addUser(Context context, String databaseName, String name, String phone, String password, String address, String gender){
+    public static void addUser(Context context, String databaseName, String name, String phone, String password, String address, String gender) {
         loadingBar = new ProgressDialog(context);
         final DatabaseReference rootFref;
         rootFref = FirebaseDatabase.getInstance().getReference();
@@ -75,7 +76,7 @@ public class Database {
         });
     }
 
-    public static void getUser(Context context, String databaseName, String name, String password){
+    public static void getUser(Context context, String databaseName, String name, String password) {
         loadingBar = new ProgressDialog(context);
         final DatabaseReference rootFref;
         rootFref = FirebaseDatabase.getInstance().getReference();
@@ -83,23 +84,22 @@ public class Database {
         rootFref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.child(databaseName).child(name).exists()){
+                if (snapshot.child(databaseName).child(name).exists()) {
                     Users usersData = snapshot.child(databaseName).child(name).getValue(Users.class);
-                    if(usersData.getUserName().equals(name)){
-                        if(usersData.getUserPassword().equals(password)){
+                    if (usersData.getUserName().equals(name)) {
+                        if (usersData.getUserPassword().equals(password)) {
                             Toast.makeText(context, "Logged in Successfully", Toast.LENGTH_SHORT).show();
                             loadingBar.dismiss();
 
                             Intent intent = new Intent(context, MainActivity.class);
                             Prevalent.currentOnlineUser = usersData;
                             context.startActivity(intent);
-                        }
-                        else {
+                        } else {
                             loadingBar.dismiss();
                             Toast.makeText(context, "Password is incorrect", Toast.LENGTH_SHORT).show();
                         }
                     }
-                }else {
+                } else {
                     Toast.makeText(context, "Account with this " + name + "number do not exist", Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
                     Toast.makeText(context, "You need to create a new account", Toast.LENGTH_SHORT).show();
