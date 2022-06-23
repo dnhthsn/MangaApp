@@ -100,7 +100,7 @@ public class FragmentHome extends Fragment {
                     @NonNull
                     @Override
                     public MangaViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.manga_item, parent, false);
+                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.__manga_item, parent, false);
                         MangaViewHolder holder = new MangaViewHolder(view);
                         return holder;
                     }

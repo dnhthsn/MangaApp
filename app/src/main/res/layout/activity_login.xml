@@ -56,7 +56,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:hint="password" />
+            android:hint="password"
+            android:inputType="numberPassword" />
 
         <CheckBox
             android:id="@+id/remember_user"
