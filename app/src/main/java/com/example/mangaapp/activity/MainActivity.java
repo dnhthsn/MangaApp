@@ -28,10 +28,10 @@ import com.google.android.material.navigation.NavigationView;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    private static final int FRAGMENT_HOME = 0;
-    private static final int FRAGMENT_FAVOURITE = 1;
-    private static final int FRAGMENT_INFO = 2;
-    private static final int FRAGMENT_SETTING = 3;
+    private final int FRAGMENT_HOME_INDEX = 0;
+    private final int FRAGMENT_FAVOURITE_INDEX = 1;
+    private final int FRAGMENT_INFO_INDEX = 2;
+    private final int FRAGMENT_SETTING_INDEX = 3;
     private int SELECT_IMAGE_CODE = 1;
 
     private DrawerLayout mDrawerLayout;
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private CircleImageView imageHeader;
     private View header;
 
-    private int currentFragment = FRAGMENT_HOME;
+    private int currentFragment = FRAGMENT_HOME_INDEX;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,25 +85,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.nav_home) {
-            if (currentFragment != FRAGMENT_HOME) {
+            if (currentFragment != FRAGMENT_HOME_INDEX) {
                 ReplaceFragment(new FragmentHome());
-                currentFragment = FRAGMENT_HOME;
+                currentFragment = FRAGMENT_HOME_INDEX;
             }
         } else if (id == R.id.nav_favourite) {
-            if (currentFragment != FRAGMENT_FAVOURITE) {
+            if (currentFragment != FRAGMENT_FAVOURITE_INDEX) {
                 ReplaceFragment(new FragmentFavourite());
-                currentFragment = FRAGMENT_FAVOURITE;
+                currentFragment = FRAGMENT_FAVOURITE_INDEX;
             }
         } else if (id == R.id.nav_info) {
-            if (currentFragment != FRAGMENT_INFO) {
+            if (currentFragment != FRAGMENT_INFO_INDEX) {
                 ReplaceFragment(new FragmentInfo());
-                currentFragment = FRAGMENT_INFO;
+                currentFragment = FRAGMENT_INFO_INDEX;
             }
 
         } else if (id == R.id.nav_setting) {
-            if (currentFragment != FRAGMENT_SETTING) {
+            if (currentFragment != FRAGMENT_SETTING_INDEX) {
                 ReplaceFragment(new FragmentSetting());
-                currentFragment = FRAGMENT_SETTING;
+                currentFragment = FRAGMENT_SETTING_INDEX;
             }
         }
 

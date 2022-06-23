@@ -14,17 +14,15 @@ import android.widget.Toast;
 
 import com.example.mangaapp.R;
 import com.example.mangaapp.database.Database;
+import com.example.mangaapp.util.Const;
 
 public class SignUpActivity extends AppCompatActivity {
     private String gender, name, phone, password, address;
-    private String databaseName = "Users";
 
     private EditText inputName, inputPassword, inputPhone, inputAddress;
     private RadioGroup genderGroup;
     private RadioButton genderRad;
     private Button clickSignup;
-
-    private ProgressDialog loadingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +35,6 @@ public class SignUpActivity extends AppCompatActivity {
         inputAddress = findViewById(R.id.input_address);
         clickSignup = findViewById(R.id.click_sign_up);
         genderGroup = findViewById(R.id.gender_group);
-
-        loadingBar = new ProgressDialog(this);
 
         clickSignup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,12 +63,7 @@ public class SignUpActivity extends AppCompatActivity {
         } else if (TextUtils.isEmpty(address)) {
             Toast.makeText(this, "Please write your address...", Toast.LENGTH_SHORT).show();
         } else {
-            loadingBar.setTitle("Create Account");
-            loadingBar.setMessage("Please wait, while we are checking the credentials");
-            loadingBar.setCanceledOnTouchOutside(false);
-            loadingBar.show();
-
-            Database.addUser(SignUpActivity.this, databaseName, name, phone, password, address, gender);
+            Database.addUser(SignUpActivity.this, Const.Database.user, name, phone, password, address, gender);
         }
     }
 }

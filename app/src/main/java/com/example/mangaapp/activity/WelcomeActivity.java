@@ -19,13 +19,11 @@ import io.paperdb.Paper;
 
 public class WelcomeActivity extends AppCompatActivity {
     private static final int MESSAGE_COUNT_DOWN = 100;
-    private int imgs[] = {R.color.black, R.color.teal_200, R.color.teal_700, R.color.purple_200};
 
     private LinearLayout ln1, ln2;
 
     private Handler handler;
     private Animation uptoDown, downtoUp;
-    private ProgressDialog loadingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +39,6 @@ public class WelcomeActivity extends AppCompatActivity {
         ln1.setAnimation(uptoDown);
         ln2.setAnimation(downtoUp);
 
-        loadingBar = new ProgressDialog(this);
         Paper.init(this);
 
         handler = new Handler() {

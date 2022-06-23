@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.example.mangaapp.prevalent.Prevalent;
 import com.example.mangaapp.R;
 import com.example.mangaapp.activity.ChapterListActivity;
+import com.example.mangaapp.util.Const;
 import com.example.mangaapp.viewholder.MangaViewHolder;
 import com.example.mangaapp.model.Mangas;
 import com.google.firebase.database.DatabaseReference;
@@ -27,7 +28,6 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
 public class FragmentHome extends Fragment {
-    private String databseName = "Mangas";
     private String SWITCH_PREF = "switch_pref";
     private String SWITCH_STATE = "switch_state";
     private Boolean switch_state;
@@ -58,7 +58,7 @@ public class FragmentHome extends Fragment {
         switch_state = switchPref.getBoolean(SWITCH_STATE, false);
 
 
-        mangaRef = FirebaseDatabase.getInstance().getReference().child(databseName);
+        mangaRef = FirebaseDatabase.getInstance().getReference().child(Const.Database.manga);
 
         FirebaseRecyclerOptions<Mangas> options = new FirebaseRecyclerOptions.Builder<Mangas>()
                 .setQuery(mangaRef, Mangas.class).build();

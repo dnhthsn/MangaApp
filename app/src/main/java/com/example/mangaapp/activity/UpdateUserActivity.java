@@ -15,21 +15,19 @@ import android.widget.Toast;
 import com.example.mangaapp.prevalent.Prevalent;
 import com.example.mangaapp.R;
 import com.example.mangaapp.fragment.FragmentInfo;
+import com.example.mangaapp.util.Const;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 
 public class UpdateUserActivity extends AppCompatActivity {
-    private String databaseName = "Users";
     private String uName, uPhone, uPass, uAddress, uGender;
 
     private EditText inputName, inputPassword, inputPhone, inputAddress;
     private RadioGroup genderGroup;
     private RadioButton genderRad;
     private Button clickUpdate;
-
-    private ProgressDialog loadingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,15 +41,13 @@ public class UpdateUserActivity extends AppCompatActivity {
         clickUpdate = findViewById(R.id.click_update);
         genderGroup = findViewById(R.id.gender_group);
 
-        loadingBar = new ProgressDialog(this);
-
         Intent intent = getIntent();
         uName = intent.getStringExtra(FragmentInfo.nameEdit);
         uPhone = intent.getStringExtra(FragmentInfo.phoneEdit);
         uPass = intent.getStringExtra(FragmentInfo.passEdit);
         uAddress = intent.getStringExtra(FragmentInfo.addressEdit);
 
-        inputName.setText(Prevalent.currentOnlineUser.getUserName());
+        inputName.setText(uName);
         inputPassword.setText(uPass);
         inputPhone.setText(uPhone);
         inputAddress.setText(uAddress);
@@ -64,7 +60,7 @@ public class UpdateUserActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
-                        .child(databaseName);
+                        .child(Const.Database.user);
                 HashMap<String, Object> userMap = new HashMap<>();
                 userMap.put("userAddress", inputAddress.getText());
                 userMap.put("userGender", uGender);

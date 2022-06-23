@@ -16,6 +16,7 @@ import com.example.mangaapp.prevalent.Prevalent;
 import com.example.mangaapp.R;
 import com.example.mangaapp.activity.UpdateUserActivity;
 import com.example.mangaapp.model.Users;
+import com.example.mangaapp.util.Const;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,7 +24,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class FragmentInfo extends Fragment {
-    private String databaseName = "Users";
     public static String nameEdit = "name";
     public static String phoneEdit = "phone";
     public static String passEdit = "password";
@@ -59,7 +59,7 @@ public class FragmentInfo extends Fragment {
         rootFref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Users usersData = snapshot.child(databaseName).child(name).getValue(Users.class);
+                Users usersData = snapshot.child(Const.Database.user).child(name).getValue(Users.class);
                 nameInfo.setText(usersData.getUserName());
                 phoneInfo.setText(usersData.getUserPhone());
                 passInfo.setText(usersData.getUserPassword());

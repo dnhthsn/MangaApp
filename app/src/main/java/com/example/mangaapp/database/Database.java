@@ -24,10 +24,7 @@ import java.util.HashMap;
 public class Database {
     public static String putName = "name";
 
-    private static ProgressDialog loadingBar;
-
     public static void addUser(Context context, String databaseName, String name, String phone, String password, String address, String gender) {
-        loadingBar = new ProgressDialog(context);
         final DatabaseReference rootFref;
         rootFref = FirebaseDatabase.getInstance().getReference();
         rootFref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -46,13 +43,11 @@ public class Database {
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
                                 Toast.makeText(context, "Congratulation, your account has been created", Toast.LENGTH_SHORT).show();
-                                loadingBar.dismiss();
 
                                 Intent intent = new Intent(context, LoginActivity.class);
                                 intent.putExtra(putName, name);
                                 context.startActivity(intent);
                             } else {
-                                loadingBar.dismiss();
                                 Toast.makeText(context, "Network Error: Please try again...", Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -60,7 +55,6 @@ public class Database {
 
                 } else {
                     Toast.makeText(context, "This " + name + "already exists", Toast.LENGTH_SHORT).show();
-                    loadingBar.dismiss();
                     Toast.makeText(context, "Please try using another phone number", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -73,7 +67,6 @@ public class Database {
     }
 
     public static void getUser(Context context, String databaseName, String name, String password) {
-        loadingBar = new ProgressDialog(context);
         final DatabaseReference rootFref;
         rootFref = FirebaseDatabase.getInstance().getReference();
 
@@ -85,19 +78,16 @@ public class Database {
                     if (usersData.getUserName().equals(name)) {
                         if (usersData.getUserPassword().equals(password)) {
                             Toast.makeText(context, "Logged in Successfully", Toast.LENGTH_SHORT).show();
-                            loadingBar.dismiss();
 
                             Intent intent = new Intent(context, MainActivity.class);
                             Prevalent.currentOnlineUser = usersData;
                             context.startActivity(intent);
                         } else {
-                            loadingBar.dismiss();
                             Toast.makeText(context, "Password is incorrect", Toast.LENGTH_SHORT).show();
                         }
                     }
                 } else {
                     Toast.makeText(context, "Account with this " + name + "number do not exist", Toast.LENGTH_SHORT).show();
-                    loadingBar.dismiss();
                     Toast.makeText(context, "You need to create a new account", Toast.LENGTH_SHORT).show();
                 }
             }

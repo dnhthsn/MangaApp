@@ -42,7 +42,7 @@ public class FragmentFavourite extends Fragment {
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         favouriteList.setLayoutManager(layoutManager);
-        adapter = new FavouriteMangaAdapter(getContext(), mangas);
+        adapter = new FavouriteMangaAdapter(mangas);
         favouriteList.setAdapter(adapter);
     }
 }

@@ -12,6 +12,7 @@ import android.webkit.WebViewClient;
 import com.example.mangaapp.R;
 import com.example.mangaapp.fragment.FragmentHome;
 import com.example.mangaapp.model.Mangas;
+import com.example.mangaapp.util.Const;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -19,8 +20,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class ChapterListActivity extends AppCompatActivity {
-    private String databaseName = "Mangas";
-
     private WebView chapterWeb;
 
     @Override
@@ -39,7 +38,7 @@ public class ChapterListActivity extends AppCompatActivity {
         rootFref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Mangas mangasData = snapshot.child(databaseName).child(nameManga).getValue(Mangas.class);
+                Mangas mangasData = snapshot.child(Const.Database.manga).child(nameManga).getValue(Mangas.class);
                 chapterWeb.setWebViewClient(new WebViewClient());
                 chapterWeb.loadUrl(mangasData.getChapters());
 
