@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mangaapp.Prevalent.Prevalent;
+import com.example.mangaapp.prevalent.Prevalent;
 import com.example.mangaapp.R;
 import com.example.mangaapp.adapter.FavouriteMangaAdapter;
 import com.example.mangaapp.model.Mangas;

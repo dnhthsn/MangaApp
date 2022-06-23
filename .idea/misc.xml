@@ -8,6 +8,8 @@
         <entry key="app/src/main/res/drawable/ic_baseline_download_24.xml" value="0.2212962962962963" />
         <entry key="app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.24722222222222223" />
         <entry key="app/src/main/res/drawable/white_round_corner.xml" value="0.24722222222222223" />
+        <entry key="app/src/main/res/layout/__chapter_item.xml" value="0.14361702127659576" />
+        <entry key="app/src/main/res/layout/__favourite_item.xml" value="0.14361702127659576" />
         <entry key="app/src/main/res/layout/_dialog.xml" value="0.14361702127659576" />
         <entry key="app/src/main/res/layout/activity_chapter_list.xml" value="0.14361702127659576" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.14361702127659576" />

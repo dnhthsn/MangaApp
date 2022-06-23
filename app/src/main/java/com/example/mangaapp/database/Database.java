@@ -7,7 +7,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.example.mangaapp.Prevalent.Prevalent;
+import com.example.mangaapp.prevalent.Prevalent;
 import com.example.mangaapp.activity.LoginActivity;
 import com.example.mangaapp.activity.MainActivity;
 import com.example.mangaapp.model.Users;

@@ -12,7 +12,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.example.mangaapp.Prevalent.Prevalent;
+import com.example.mangaapp.prevalent.Prevalent;
 import com.example.mangaapp.R;
 import com.example.mangaapp.fragment.FragmentInfo;
 import com.google.firebase.database.DatabaseReference;

@@ -8,13 +8,10 @@ import android.os.Bundle;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Toast;
 
-import com.example.mangaapp.Prevalent.Prevalent;
 import com.example.mangaapp.R;
 import com.example.mangaapp.fragment.FragmentHome;
 import com.example.mangaapp.model.Mangas;
-import com.example.mangaapp.model.Users;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

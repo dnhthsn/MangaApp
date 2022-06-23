@@ -11,21 +11,18 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.mangaapp.Prevalent.Prevalent;
+import com.example.mangaapp.prevalent.Prevalent;
 import com.example.mangaapp.R;
 import com.example.mangaapp.fragment.FragmentFavourite;
 import com.example.mangaapp.fragment.FragmentHome;
 import com.example.mangaapp.fragment.FragmentInfo;
 import com.example.mangaapp.fragment.FragmentSetting;
-import com.example.mangaapp.sharedpreferences.SharedPreference;
 import com.google.android.material.navigation.NavigationView;
 
 import de.hdodenhof.circleimageview.CircleImageView;

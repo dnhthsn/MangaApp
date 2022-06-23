@@ -1,4 +1,4 @@
-package com.example.mangaapp.Prevalent;
+package com.example.mangaapp.prevalent;
 
 import com.example.mangaapp.model.Mangas;
 import com.example.mangaapp.model.Users;
