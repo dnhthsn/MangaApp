@@ -18,8 +18,8 @@
             android:layout_height="wrap_content"
             android:background="@drawable/_button_round_corner"
             android:text="Log Out"
-            android:visibility="invisible"
             android:textColor="@color/white"
+            android:visibility="invisible"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
 

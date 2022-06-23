@@ -18,7 +18,6 @@ import com.example.mangaapp.R;
 import io.paperdb.Paper;
 
 public class WelcomeActivity extends AppCompatActivity {
-    private final String databaseName = "Users";
     private static final int MESSAGE_COUNT_DOWN = 100;
     private int imgs[] = {R.color.black, R.color.teal_200, R.color.teal_700, R.color.purple_200};
 

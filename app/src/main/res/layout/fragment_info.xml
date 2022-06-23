@@ -6,18 +6,18 @@
     android:padding="20dp">
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Information"
         android:textSize="30dp"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/name_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="user name"
         android:layout_marginTop="100dp"
+        android:hint="user name"
         android:padding="5dp"
         android:textSize="20dp" />
 
@@ -34,8 +34,8 @@
         android:id="@+id/phone_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="phone number"
         android:layout_marginTop="15dp"
+        android:hint="phone number"
         android:padding="5dp"
         android:textSize="20dp" />
 
@@ -43,8 +43,8 @@
         android:id="@+id/address_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="address"
         android:layout_marginTop="15dp"
+        android:hint="address"
         android:padding="5dp"
         android:textSize="20dp" />
 
@@ -52,15 +52,15 @@
         android:id="@+id/gender_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="gender"
         android:layout_marginTop="15dp"
+        android:hint="gender"
         android:padding="5dp"
         android:textSize="20dp" />
 
     <Button
         android:id="@+id/edit_information"
-        android:text="EDIT"
-        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="EDIT" />
 </LinearLayout>

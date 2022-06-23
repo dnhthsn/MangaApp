@@ -31,6 +31,7 @@ public class FragmentHome extends Fragment {
     private String SWITCH_PREF = "switch_pref";
     private String SWITCH_STATE = "switch_state";
     private Boolean switch_state;
+    public static String putMangaName = "mangaName";
 
     private RecyclerView mangaList;
 
@@ -73,7 +74,7 @@ public class FragmentHome extends Fragment {
                             @Override
                             public void onClick(View view) {
                                 Intent intent = new Intent(getContext(), ChapterListActivity.class);
-                                intent.putExtra("mangaName", mangas.getNameManga());
+                                intent.putExtra(putMangaName, mangas.getNameManga());
                                 startActivity(intent);
                             }
                         });

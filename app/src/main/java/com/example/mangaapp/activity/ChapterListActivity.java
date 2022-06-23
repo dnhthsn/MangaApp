@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.mangaapp.Prevalent.Prevalent;
 import com.example.mangaapp.R;
+import com.example.mangaapp.fragment.FragmentHome;
 import com.example.mangaapp.model.Mangas;
 import com.example.mangaapp.model.Users;
 import com.google.firebase.database.DataSnapshot;
@@ -33,7 +34,7 @@ public class ChapterListActivity extends AppCompatActivity {
         chapterWeb = findViewById(R.id.chapter_web);
 
         Intent intent = getIntent();
-        String nameManga = intent.getStringExtra("mangaName");
+        String nameManga = intent.getStringExtra(FragmentHome.putMangaName);
 
         final DatabaseReference rootFref;
         rootFref = FirebaseDatabase.getInstance().getReference();

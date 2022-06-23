@@ -4,13 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
     tools:context=".activity.ChapterListActivity">
 
     <WebView
         android:id="@+id/chapter_web"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="15dp" />
+        android:layout_height="match_parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,23 +19,11 @@ public class Mangas implements Serializable {
         return imgManga;
     }
 
-    public void setImgManga(String imgManga) {
-        this.imgManga = imgManga;
-    }
-
     public String getNameManga() {
         return nameManga;
     }
 
-    public void setNameManga(String nameManga) {
-        this.nameManga = nameManga;
-    }
-
     public String getChapters() {
         return chapters;
-    }
-
-    public void setChapters(String chapters) {
-        this.chapters = chapters;
     }
 }

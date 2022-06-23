@@ -52,13 +52,13 @@ public class LoginActivity extends AppCompatActivity {
         loadingBar = new ProgressDialog(this);
 
         Intent intent = getIntent();
-        String nameIT = intent.getStringExtra("name");
+        String nameIT = intent.getStringExtra(Database.putName);
 
         inputName.setText(nameIT);
 
         SharedPreference.sharedPreferences = getSharedPreferences("dataLogin", MODE_PRIVATE);
-        nameShared = SharedPreference.sharedPreferences.getString("name", "");
-        passShared = SharedPreference.sharedPreferences.getString("password", "");
+        nameShared = SharedPreference.sharedPreferences.getString(SharedPreference.sharedName, "");
+        passShared = SharedPreference.sharedPreferences.getString(SharedPreference.sharedPass, "");
         inputName.setText(nameShared);
         inputPassword.setText(passShared);
 

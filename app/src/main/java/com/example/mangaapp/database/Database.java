@@ -22,11 +22,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 
 public class Database {
+    public static String putName = "name";
+
     private static ProgressDialog loadingBar;
-
-    public static void getAllMangas() {
-
-    }
 
     public static void addUser(Context context, String databaseName, String name, String phone, String password, String address, String gender) {
         loadingBar = new ProgressDialog(context);
@@ -51,8 +49,7 @@ public class Database {
                                 loadingBar.dismiss();
 
                                 Intent intent = new Intent(context, LoginActivity.class);
-                                intent.putExtra("name", name);
-                                intent.putExtra("pass", password);
+                                intent.putExtra(putName, name);
                                 context.startActivity(intent);
                             } else {
                                 loadingBar.dismiss();
