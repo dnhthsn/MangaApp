@@ -5,8 +5,9 @@
     android:background="#07EDEC"
     android:orientation="vertical">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/img_header"
+        android:src="@drawable/logo"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center"

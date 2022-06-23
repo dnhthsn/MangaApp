@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.mangaapp.Prevalent.Prevalent;
 import com.example.mangaapp.R;
+import com.example.mangaapp.database.Database;
 import com.example.mangaapp.model.Users;
 import com.example.mangaapp.sharedpreferences.SharedPreference;
 import com.google.firebase.database.DataSnapshot;
@@ -52,13 +53,11 @@ public class LoginActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String nameIT = intent.getStringExtra("name");
-        //String passIT = intent.getStringExtra("pass");
 
         inputName.setText(nameIT);
-        //inputPassword.setText(passIT);
 
         SharedPreference.sharedPreferences = getSharedPreferences("dataLogin", MODE_PRIVATE);
-        nameShared  = SharedPreference.sharedPreferences.getString("name", "");
+        nameShared = SharedPreference.sharedPreferences.getString("name", "");
         passShared = SharedPreference.sharedPreferences.getString("password", "");
         inputName.setText(nameShared);
         inputPassword.setText(passShared);
@@ -72,9 +71,9 @@ public class LoginActivity extends AppCompatActivity {
 
         String userNameKey = Paper.book().read(Prevalent.userNameKey);
         String userPasswordKey = Paper.book().read(Prevalent.userPasswordKey);
-        if(userNameKey != "" && userPasswordKey != ""){
-            if(!TextUtils.isEmpty(userNameKey) && !TextUtils.isEmpty(userPasswordKey)){
-                AllowAccess(userNameKey, userPasswordKey);
+        if (userNameKey != "" && userPasswordKey != "") {
+            if (!TextUtils.isEmpty(userNameKey) && !TextUtils.isEmpty(userPasswordKey)) {
+                Database.getUser(LoginActivity.this, databaseName, userNameKey, userPasswordKey);
 
                 loadingBar.setTitle("Already Logged in");
                 loadingBar.setMessage("Please wait...");
@@ -83,44 +82,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     }
-
-    private void AllowAccess(String name, String password) {
-        final DatabaseReference rootFref;
-        rootFref = FirebaseDatabase.getInstance().getReference();
-
-        rootFref.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.child(databaseName).child(name).exists()){
-                    Users usersData = snapshot.child(databaseName).child(name).getValue(Users.class);
-                    if(usersData.getUserName().equals(name)){
-                        if(usersData.getUserPassword().equals(password)){
-                            Toast.makeText(LoginActivity.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
-                            loadingBar.dismiss();
-
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                            Prevalent.currentOnlineUser = usersData;
-                            startActivity(intent);
-                        }
-                        else {
-                            loadingBar.dismiss();
-                            Toast.makeText(LoginActivity.this, "Password is incorrect", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }else {
-                    Toast.makeText(LoginActivity.this, "Account with this " + name + "number do not exist", Toast.LENGTH_SHORT).show();
-                    loadingBar.dismiss();
-                    Toast.makeText(LoginActivity.this, "You need to create a new account", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
-
 
     private void loginUser() {
         String name = inputName.getText().toString();
@@ -136,49 +97,15 @@ public class LoginActivity extends AppCompatActivity {
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
 
-            AllowAccesToAccount(name, password);
-        }
-    }
-
-    private void AllowAccesToAccount(String name, String password) {
-        if (rememberUser.isChecked()){
-            SharedPreference.saveUser(name, password);
-            Paper.book().write(Prevalent.userNameKey, name);
-            Paper.book().write(Prevalent.userPasswordKey, password);
-        }
-
-        final DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-
-        rootRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                if (snapshot.child(databaseName).child(name).exists()) {
-                    Users usersData = snapshot.child(databaseName).child(name).getValue(Users.class);
-                    if (usersData.getUserName().equals(name)) {
-                        if (usersData.getUserPassword().equals(password)) {
-                            Toast.makeText(LoginActivity.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
-                            loadingBar.dismiss();
-
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                            Prevalent.currentOnlineUser = usersData;
-                            intent.putExtra("name", name);
-                            startActivity(intent);
-                        } else {
-                            loadingBar.dismiss();
-                            Toast.makeText(LoginActivity.this, "Password is incorrect", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                } else {
-                    Toast.makeText(LoginActivity.this, "Account do not exist", Toast.LENGTH_SHORT).show();
-                    loadingBar.dismiss();
-                    Toast.makeText(LoginActivity.this, "You need to create a new account", Toast.LENGTH_SHORT).show();
-                }
+            if (rememberUser.isChecked()) {
+                SharedPreference.saveUser(name, password);
+                Paper.book().write(Prevalent.userNameKey, name);
+                Paper.book().write(Prevalent.userPasswordKey, password);
+            } else {
+                SharedPreference.removeUser();
             }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
+            Database.getUser(LoginActivity.this, databaseName, name, password);
+        }
     }
 }

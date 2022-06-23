@@ -11,7 +11,10 @@ public class SharedPreference {
         editor.commit();
     }
 
-    public static void getUser(String name, String password){
-
+    public static void removeUser(){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove("name");
+        editor.remove("password");
+        editor.commit();
     }
 }

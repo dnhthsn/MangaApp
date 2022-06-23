@@ -8,6 +8,14 @@ public class Users {
     public Users() {
     }
 
+    public Users(String userName, String userPhone, String userPassword, String userAddress, String userGender) {
+        this.userName = userName;
+        this.userPhone = userPhone;
+        this.userPassword = userPassword;
+        this.userAddress = userAddress;
+        this.userGender = userGender;
+    }
+
     public String getUserName() {
         return userName;
     }

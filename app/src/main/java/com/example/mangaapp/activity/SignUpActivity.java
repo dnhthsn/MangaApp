@@ -15,6 +15,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.mangaapp.R;
+import com.example.mangaapp.database.Database;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -82,53 +83,7 @@ public class SignUpActivity extends AppCompatActivity {
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
 
-            ValidatephoneNumber(name, phone, password, address, gender);
+            Database.addUser(SignUpActivity.this, databaseName, name, phone, password, address, gender);
         }
-    }
-
-    private void ValidatephoneNumber(String name, String phone, String password, String address, String gender) {
-        final DatabaseReference rootFref;
-        rootFref = FirebaseDatabase.getInstance().getReference();
-        rootFref.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (!(snapshot.child(databaseName).child(name).exists())) {
-                    HashMap<String, Object> userdataMap = new HashMap<>();
-                    userdataMap.put("userName", name);
-                    userdataMap.put("userPhone", phone);
-                    userdataMap.put("userPassword", password);
-                    userdataMap.put("userAddress", address);
-                    userdataMap.put("userGender", gender);
-
-                    rootFref.child(databaseName).child(name).updateChildren(userdataMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                Toast.makeText(SignUpActivity.this, "Congratulation, your account has been created", Toast.LENGTH_SHORT).show();
-                                loadingBar.dismiss();
-
-                                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
-                                intent.putExtra("name", name);
-                                intent.putExtra("pass", password);
-                                startActivity(intent);
-                            } else {
-                                loadingBar.dismiss();
-                                Toast.makeText(SignUpActivity.this, "Network Error: Please try again...", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-
-                } else {
-                    Toast.makeText(SignUpActivity.this, "This " + name + "already exists", Toast.LENGTH_SHORT).show();
-                    loadingBar.dismiss();
-                    Toast.makeText(SignUpActivity.this, "Please try using another phone number", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
     }
 }

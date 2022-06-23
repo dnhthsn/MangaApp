@@ -41,6 +41,10 @@ public class FragmentSetting extends Fragment {
         logOut6 = view.findViewById(R.id.log_out6);
         logOut7 = view.findViewById(R.id.log_out7);
 
+        logOutButtons();
+    }
+
+    public void logOutButtons(){
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

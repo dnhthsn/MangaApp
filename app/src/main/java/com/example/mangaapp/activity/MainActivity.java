@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.mangaapp.Prevalent.Prevalent;
 import com.example.mangaapp.R;
 import com.example.mangaapp.fragment.FragmentFavourite;
 import com.example.mangaapp.fragment.FragmentHome;
@@ -26,6 +27,8 @@ import com.example.mangaapp.fragment.FragmentInfo;
 import com.example.mangaapp.fragment.FragmentSetting;
 import com.example.mangaapp.sharedpreferences.SharedPreference;
 import com.google.android.material.navigation.NavigationView;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static final int FRAGMENT_HOME = 0;
@@ -38,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Toolbar mToolBar;
     private NavigationView mNavigationView;
     private TextView nameHeader;
-    private ImageView imageHeader;
+    private CircleImageView imageHeader;
     private View header;
 
     private int currentFragment = FRAGMENT_HOME;
@@ -66,8 +69,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        Intent intent = getIntent();
-        nameHeader.setText(intent.getStringExtra("name"));
+        nameHeader.setText(Prevalent.currentOnlineUser.getUserName());
 
         setSupportActionBar(mToolBar);
 
@@ -118,15 +120,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (requestCode == 1){
             Uri uri = data.getData();
             imageHeader.setImageURI(uri);
-        }
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
-            mDrawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
         }
     }
 

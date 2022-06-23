@@ -45,4 +45,5 @@ dependencies {
     implementation 'io.github.pilgr:paperdb:2.7.2'
     implementation 'com.google.firebase:firebase-storage:16.0.1'
     implementation 'com.firebaseui:firebase-ui-database:3.2.2'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }
