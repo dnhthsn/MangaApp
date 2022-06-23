@@ -16,18 +16,25 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.mangaapp.adapter.MangaAdapter;
 import com.example.mangaapp.prevalent.Prevalent;
 import com.example.mangaapp.R;
 import com.example.mangaapp.activity.ChapterListActivity;
 import com.example.mangaapp.util.Const;
 import com.example.mangaapp.viewholder.MangaViewHolder;
 import com.example.mangaapp.model.Mangas;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.ValueEventListener;
 
-public class FragmentHome extends Fragment {
+import java.util.ArrayList;
+import java.util.List;
+
+public class FragmentHome extends Fragment implements MangaAdapter.ItemClickListener{
     private String SWITCH_PREF = "switch_pref";
     private String SWITCH_STATE = "switch_state";
     private Boolean switch_state;
@@ -35,6 +42,8 @@ public class FragmentHome extends Fragment {
 
     private RecyclerView mangaList;
 
+    private MangaAdapter mangaAdapter;
+    private List<Mangas> mangas;
     private DatabaseReference mangaRef;
     private SharedPreferences switchPref;
     private SharedPreferences.Editor switchEdit;
@@ -57,58 +66,37 @@ public class FragmentHome extends Fragment {
 
         switch_state = switchPref.getBoolean(SWITCH_STATE, false);
 
+        mangas = new ArrayList<>();
+        mangaAdapter = new MangaAdapter(mangas);
 
         mangaRef = FirebaseDatabase.getInstance().getReference().child(Const.Database.manga);
 
-        FirebaseRecyclerOptions<Mangas> options = new FirebaseRecyclerOptions.Builder<Mangas>()
-                .setQuery(mangaRef, Mangas.class).build();
+        mangaRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot:snapshot.getChildren()){
+                    Mangas manga = dataSnapshot.getValue(Mangas.class);
+                    mangas.add(manga);
+                }
+                mangaAdapter.notifyDataSetChanged();
+            }
 
-        FirebaseRecyclerAdapter<Mangas, MangaViewHolder> adapter =
-                new FirebaseRecyclerAdapter<Mangas, MangaViewHolder>(options) {
-                    @Override
-                    protected void onBindViewHolder(@NonNull MangaViewHolder mangaViewHolder, int i, @NonNull Mangas mangas) {
-                        mangaViewHolder.nameManga.setText(mangas.getNameManga());
-                        Glide.with(getContext()).load(mangas.getImgManga()).into(mangaViewHolder.imgManga);
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-                        mangaViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Intent intent = new Intent(getContext(), ChapterListActivity.class);
-                                intent.putExtra(putMangaName, mangas.getNameManga());
-                                startActivity(intent);
-                            }
-                        });
-
-                        mangaViewHolder.favouriteManga.setChecked(switch_state);
-                        mangaViewHolder.favouriteManga.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                            @Override
-                            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                                if (b) {
-                                    Prevalent.favouriteMangas.add(mangas);
-                                    switchEdit.putBoolean(SWITCH_STATE, true);
-                                    switchEdit.commit();
-                                } else {
-                                    Prevalent.favouriteMangas.remove(mangas);
-                                    switchEdit.remove(SWITCH_STATE);
-                                    switchEdit.putBoolean(SWITCH_STATE, false);
-                                    switchEdit.commit();
-                                }
-                            }
-                        });
-                    }
-
-                    @NonNull
-                    @Override
-                    public MangaViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.__manga_item, parent, false);
-                        MangaViewHolder holder = new MangaViewHolder(view);
-                        return holder;
-                    }
-                };
+            }
+        });
 
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         mangaList.setLayoutManager(layoutManager);
-        mangaList.setAdapter(adapter);
-        adapter.startListening();
+        mangaAdapter.setItemClickListener(FragmentHome.this);
+        mangaList.setAdapter(mangaAdapter);
+    }
+
+    @Override
+    public void onClick(View view, int position, boolean isLongClick) {
+        Intent intent = new Intent(getContext(), ChapterListActivity.class);
+        intent.putExtra(putMangaName, mangas.get(position).getNameManga());
+        startActivity(intent);
     }
 }

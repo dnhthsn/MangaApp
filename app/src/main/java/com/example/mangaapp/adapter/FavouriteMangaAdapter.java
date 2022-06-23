@@ -24,7 +24,7 @@ public class FavouriteMangaAdapter extends RecyclerView.Adapter<FavouriteMangaAd
     @NonNull
     @Override
     public FavouriteMangaViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new FavouriteMangaViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.__favourite_item, parent, false));
+        return new FavouriteMangaViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_favourite, parent, false));
     }
 
     @Override
