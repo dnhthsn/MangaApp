@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.mangaapp.Prevalent.Prevalent;
 import com.example.mangaapp.R;
 import com.example.mangaapp.model.Mangas;
 import com.example.mangaapp.viewholder.FavouriteMangaViewHolder;

@@ -58,9 +58,9 @@ public class ChapterListActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(chapterWeb.canGoBack()){
+        if (chapterWeb.canGoBack()) {
             chapterWeb.goBack();
-        }else {
+        } else {
             super.onBackPressed();
         }
     }

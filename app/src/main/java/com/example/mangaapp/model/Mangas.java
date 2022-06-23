@@ -1,7 +1,6 @@
 package com.example.mangaapp.model;
 
 import java.io.Serializable;
-import java.util.List;
 
 public class Mangas implements Serializable {
     private String imgManga, nameManga;

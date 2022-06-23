@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import com.example.mangaapp.Prevalent.Prevalent;
 import com.example.mangaapp.activity.LoginActivity;
 import com.example.mangaapp.activity.MainActivity;
-import com.example.mangaapp.activity.SignUpActivity;
 import com.example.mangaapp.model.Users;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

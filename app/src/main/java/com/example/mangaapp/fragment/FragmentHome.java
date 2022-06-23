@@ -19,7 +19,6 @@ import com.bumptech.glide.Glide;
 import com.example.mangaapp.Prevalent.Prevalent;
 import com.example.mangaapp.R;
 import com.example.mangaapp.activity.ChapterListActivity;
-import com.example.mangaapp.sharedpreferences.SharedPreference;
 import com.example.mangaapp.viewholder.MangaViewHolder;
 import com.example.mangaapp.model.Mangas;
 import com.google.firebase.database.DatabaseReference;

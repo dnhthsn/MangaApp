@@ -2,7 +2,6 @@ package com.example.mangaapp.viewholder;
 
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;

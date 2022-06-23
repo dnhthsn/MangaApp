@@ -1,7 +1,5 @@
 package com.example.mangaapp.model;
 
-import java.io.Serializable;
-
 public class Users {
     private String userName, userPhone, userPassword, userAddress, userGender;
 
