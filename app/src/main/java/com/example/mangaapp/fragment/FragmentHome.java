@@ -70,7 +70,7 @@ public class FragmentHome extends Fragment implements MangaAdapter.ItemClickList
             }
         });
 
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(), 3, GridLayoutManager.VERTICAL, false);
         mangaList.setLayoutManager(layoutManager);
         mangaAdapter.setItemClickListener(FragmentHome.this);
         mangaList.setAdapter(mangaAdapter);
