@@ -1,6 +1,5 @@
-package com.example.mangaapp.database;
+package com.example.mangaapp.rest;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;

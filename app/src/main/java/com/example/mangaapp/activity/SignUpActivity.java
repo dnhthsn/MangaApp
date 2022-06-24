@@ -2,7 +2,6 @@ package com.example.mangaapp.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -13,7 +12,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.mangaapp.R;
-import com.example.mangaapp.database.Database;
+import com.example.mangaapp.rest.Database;
 import com.example.mangaapp.util.Const;
 
 public class SignUpActivity extends AppCompatActivity {
