@@ -1,12 +1,5 @@
 package com.example.mangaapp.util;
 
-import com.example.mangaapp.model.Mangas;
-import com.example.mangaapp.model.Users;
-import com.google.firebase.database.snapshot.StringNode;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public interface Const {
     interface Database {
         String manga = "Mangas";

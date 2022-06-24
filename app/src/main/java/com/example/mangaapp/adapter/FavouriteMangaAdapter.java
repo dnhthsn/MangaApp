@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.mangaapp.R;
 import com.example.mangaapp.model.Mangas;
+
 import java.util.List;
 
 public class FavouriteMangaAdapter extends RecyclerView.Adapter<FavouriteMangaAdapter.FavouriteMangaViewHolder> {

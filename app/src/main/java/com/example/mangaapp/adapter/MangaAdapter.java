@@ -60,7 +60,7 @@ public class MangaAdapter extends RecyclerView.Adapter<MangaAdapter.MangaViewHol
 
         @Override
         public void onClick(View view) {
-            if(itemClickListener != null){
+            if (itemClickListener != null) {
                 itemClickListener.onClick(view, getAdapterPosition(), false);
             }
         }

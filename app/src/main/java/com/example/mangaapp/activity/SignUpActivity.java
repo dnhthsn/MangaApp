@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.example.mangaapp.R;
 import com.example.mangaapp.model.Users;
@@ -34,8 +36,6 @@ public class SignUpActivity extends AppCompatActivity {
         clickSignup = findViewById(R.id.click_sign_up);
         genderGroup = findViewById(R.id.gender_group);
 
-
-
         repository = new Repository();
         clickSignup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +48,10 @@ public class SignUpActivity extends AppCompatActivity {
                 int genderGrID = genderGroup.getCheckedRadioButtonId();
                 RadioButton genderRad = findViewById(genderGrID);
                 String gender = genderRad.getText().toString();
+
+                if(TextUtils.isEmpty(name)){
+                    Toast.makeText(SignUpActivity.this, Const.Error.name, Toast.LENGTH_SHORT).show();
+                }
 
                 Users users = new Users(name, phone, password, address, gender);
                 repository.addUser(Const.Database.user, users, SignUpActivity.this);
