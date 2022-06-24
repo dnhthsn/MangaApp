@@ -29,13 +29,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private final int FRAGMENT_HOME_INDEX = 0;
     private final int FRAGMENT_INFO_INDEX = 1;
-    private int SELECT_IMAGE_CODE = 1;
 
     private DrawerLayout mDrawerLayout;
     private Toolbar mToolBar;
     private NavigationView mNavigationView;
     private TextView nameHeader;
-    private CircleImageView imageHeader;
     private View header;
 
     private int currentFragment = FRAGMENT_HOME_INDEX;
@@ -51,17 +49,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         header = mNavigationView.getHeaderView(0);
         nameHeader = header.findViewById(R.id.name_header);
-        imageHeader = header.findViewById(R.id.img_header);
-
-        imageHeader.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Title"), SELECT_IMAGE_CODE);
-            }
-        });
 
         if (!TextUtils.isEmpty(Prevalent.currentOnlineUser.getName())) {
             nameHeader.setText(Prevalent.currentOnlineUser.getName());
@@ -97,15 +84,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1) {
-            Uri uri = data.getData();
-            imageHeader.setImageURI(uri);
-        }
     }
 
     private void ReplaceFragment(Fragment fragment) {

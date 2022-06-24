@@ -16,7 +16,6 @@ import com.example.mangaapp.R;
 import com.example.mangaapp.model.Users;
 import com.example.mangaapp.prevalent.Prevalent;
 import com.example.mangaapp.rest.Callback;
-import com.example.mangaapp.rest.Database;
 import com.example.mangaapp.rest.Repository;
 import com.example.mangaapp.sharedpreferences.SharedPreference;
 import com.example.mangaapp.util.Const;
@@ -67,10 +66,10 @@ public class LoginActivity extends AppCompatActivity {
                             for (Users users : list) {
                                 if (users.getName().equals(name) && users.getPassword().equals(password)) {
                                     Toast.makeText(LoginActivity.this, Const.Success.login, Toast.LENGTH_SHORT).show();
-
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                     Prevalent.currentOnlineUser = users;
                                     startActivity(intent);
+                                    break;
                                 } else {
                                     Toast.makeText(LoginActivity.this, Const.Error.passIncorrect, Toast.LENGTH_SHORT).show();
                                 }
