@@ -30,7 +30,7 @@ public class ChapterListActivity extends AppCompatActivity {
         chapterWeb = findViewById(R.id.chapter_web);
 
         Intent intent = getIntent();
-        String nameManga = intent.getStringExtra(FragmentHome.putMangaName);
+        String nameManga = intent.getStringExtra(Const.Sender.mangaName);
 
         final DatabaseReference rootFref;
         rootFref = FirebaseDatabase.getInstance().getReference();

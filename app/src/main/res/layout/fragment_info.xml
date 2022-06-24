@@ -63,4 +63,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:text="EDIT" />
+
+    <Button
+        android:id="@+id/log_out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/_button_round_corner"
+        android:text="Log Out"
+        android:textColor="@color/white" />
 </LinearLayout>

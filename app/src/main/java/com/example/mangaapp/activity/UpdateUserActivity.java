@@ -42,10 +42,10 @@ public class UpdateUserActivity extends AppCompatActivity {
         genderGroup = findViewById(R.id.gender_group);
 
         Intent intent = getIntent();
-        uName = intent.getStringExtra(FragmentInfo.nameEdit);
-        uPhone = intent.getStringExtra(FragmentInfo.phoneEdit);
-        uPass = intent.getStringExtra(FragmentInfo.passEdit);
-        uAddress = intent.getStringExtra(FragmentInfo.addressEdit);
+        uName = intent.getStringExtra(Const.Sender.name);
+        uPhone = intent.getStringExtra(Const.Sender.phone);
+        uPass = intent.getStringExtra(Const.Sender.password);
+        uAddress = intent.getStringExtra(Const.Sender.address);
 
         inputName.setText(uName);
         inputPassword.setText(uPass);
@@ -71,7 +71,7 @@ public class UpdateUserActivity extends AppCompatActivity {
                 reference.child(Prevalent.currentOnlineUser.getUserName()).updateChildren(userMap);
 
                 startActivity(new Intent(UpdateUserActivity.this, LoginActivity.class));
-                Toast.makeText(UpdateUserActivity.this, "Profile info update successfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(UpdateUserActivity.this, Const.Success.update, Toast.LENGTH_SHORT).show();
                 finish();
             }
         });

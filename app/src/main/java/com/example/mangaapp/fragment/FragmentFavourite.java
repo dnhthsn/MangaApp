@@ -15,6 +15,7 @@ import com.example.mangaapp.prevalent.Prevalent;
 import com.example.mangaapp.R;
 import com.example.mangaapp.adapter.FavouriteMangaAdapter;
 import com.example.mangaapp.model.Mangas;
+import com.example.mangaapp.util.Const;
 
 import java.util.ArrayList;
 import java.util.List;

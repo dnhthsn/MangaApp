@@ -15,20 +15,15 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.mangaapp.adapter.MangaAdapter;
-import com.example.mangaapp.prevalent.Prevalent;
 import com.example.mangaapp.R;
 import com.example.mangaapp.activity.ChapterListActivity;
 import com.example.mangaapp.util.Const;
-import com.example.mangaapp.viewholder.MangaViewHolder;
 import com.example.mangaapp.model.Mangas;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -38,7 +33,6 @@ public class FragmentHome extends Fragment implements MangaAdapter.ItemClickList
     private String SWITCH_PREF = "switch_pref";
     private String SWITCH_STATE = "switch_state";
     private Boolean switch_state;
-    public static String putMangaName = "mangaName";
 
     private RecyclerView mangaList;
 
@@ -96,7 +90,7 @@ public class FragmentHome extends Fragment implements MangaAdapter.ItemClickList
     @Override
     public void onClick(View view, int position, boolean isLongClick) {
         Intent intent = new Intent(getContext(), ChapterListActivity.class);
-        intent.putExtra(putMangaName, mangas.get(position).getNameManga());
+        intent.putExtra(Const.Sender.mangaName, mangas.get(position).getNameManga());
         startActivity(intent);
     }
 }

@@ -22,7 +22,7 @@ import com.example.mangaapp.R;
 import com.example.mangaapp.fragment.FragmentFavourite;
 import com.example.mangaapp.fragment.FragmentHome;
 import com.example.mangaapp.fragment.FragmentInfo;
-import com.example.mangaapp.fragment.FragmentSetting;
+import com.example.mangaapp.util.Const;
 import com.google.android.material.navigation.NavigationView;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private final int FRAGMENT_HOME_INDEX = 0;
     private final int FRAGMENT_FAVOURITE_INDEX = 1;
     private final int FRAGMENT_INFO_INDEX = 2;
-    private final int FRAGMENT_SETTING_INDEX = 3;
     private int SELECT_IMAGE_CODE = 1;
 
     private DrawerLayout mDrawerLayout;
@@ -98,12 +97,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             if (currentFragment != FRAGMENT_INFO_INDEX) {
                 ReplaceFragment(new FragmentInfo());
                 currentFragment = FRAGMENT_INFO_INDEX;
-            }
-
-        } else if (id == R.id.nav_setting) {
-            if (currentFragment != FRAGMENT_SETTING_INDEX) {
-                ReplaceFragment(new FragmentSetting());
-                currentFragment = FRAGMENT_SETTING_INDEX;
             }
         }
 

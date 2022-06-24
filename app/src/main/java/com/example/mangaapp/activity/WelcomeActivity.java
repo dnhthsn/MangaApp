@@ -15,8 +15,6 @@ import android.widget.LinearLayout;
 
 import com.example.mangaapp.R;
 
-import io.paperdb.Paper;
-
 public class WelcomeActivity extends AppCompatActivity {
     private static final int MESSAGE_COUNT_DOWN = 100;
 
@@ -38,8 +36,6 @@ public class WelcomeActivity extends AppCompatActivity {
 
         ln1.setAnimation(uptoDown);
         ln2.setAnimation(downtoUp);
-
-        Paper.init(this);
 
         handler = new Handler() {
             @Override

@@ -2,22 +2,22 @@ package com.example.mangaapp.sharedpreferences;
 
 import android.content.SharedPreferences;
 
+import com.example.mangaapp.util.Const;
+
 public class SharedPreference {
     public static SharedPreferences sharedPreferences;
-    public static String sharedName = "name";
-    public static String sharedPass = "password";
 
     public static void saveUser(String name, String password) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(sharedName, name);
-        editor.putString(sharedPass, password);
+        editor.putString(Const.Sender.name, name);
+        editor.putString(Const.Sender.password, password);
         editor.commit();
     }
 
     public static void removeUser() {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.remove(sharedName);
-        editor.remove(sharedPass);
+        editor.remove(Const.Sender.name);
+        editor.remove(Const.Sender.password);
         editor.commit();
     }
 }

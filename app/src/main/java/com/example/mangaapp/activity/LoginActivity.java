@@ -2,7 +2,6 @@ package com.example.mangaapp.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -17,8 +16,6 @@ import com.example.mangaapp.R;
 import com.example.mangaapp.database.Database;
 import com.example.mangaapp.sharedpreferences.SharedPreference;
 import com.example.mangaapp.util.Const;
-
-import io.paperdb.Paper;
 
 public class LoginActivity extends AppCompatActivity {
     private String name, pass;
@@ -39,14 +36,12 @@ public class LoginActivity extends AppCompatActivity {
         createAccount = findViewById(R.id.create_account);
         rememberUser = findViewById(R.id.remember_user);
 
-        Paper.init(this);
-
         SharedPreference.sharedPreferences = getSharedPreferences("dataLogin", MODE_PRIVATE);
-        name = SharedPreference.sharedPreferences.getString(SharedPreference.sharedName, "");
-        pass = SharedPreference.sharedPreferences.getString(SharedPreference.sharedPass, "");
+        name = SharedPreference.sharedPreferences.getString(Const.Sender.name, "");
+        pass = SharedPreference.sharedPreferences.getString(Const.Sender.password, "");
 
         Intent intent = getIntent();
-        String nameIT = intent.getStringExtra(Database.putName);
+        String nameIT = intent.getStringExtra(Const.Sender.name);
 
         inputName.setText(!TextUtils.isEmpty(name) ? name:nameIT);
         inputPassword.setText(pass);
@@ -57,14 +52,6 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent1 = new Intent(LoginActivity.this, SignUpActivity.class);
             startActivity(intent1);
         });
-
-        String userNameKey = Paper.book().read(Prevalent.userNameKey);
-        String userPasswordKey = Paper.book().read(Prevalent.userPasswordKey);
-        if (userNameKey != "" && userPasswordKey != "") {
-            if (!TextUtils.isEmpty(userNameKey) && !TextUtils.isEmpty(userPasswordKey)) {
-                Database.getUser(LoginActivity.this, Const.Database.user, userNameKey, userPasswordKey);
-            }
-        }
     }
 
     private void loginUser() {
@@ -72,19 +59,16 @@ public class LoginActivity extends AppCompatActivity {
         String password = inputPassword.getText().toString();
 
         if (TextUtils.isEmpty(name)) {
-            Toast.makeText(this, "Please write your name...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, Const.Error.name, Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(password)) {
-            Toast.makeText(this, "Please write your password...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, Const.Error.password, Toast.LENGTH_SHORT).show();
         } else {
             if (rememberUser.isChecked()) {
                 SharedPreference.saveUser(name, password);
-                Paper.book().write(Prevalent.userNameKey, name);
-                Paper.book().write(Prevalent.userPasswordKey, password);
+                Database.getUser(LoginActivity.this, Const.Database.user, name, password);
             } else {
                 SharedPreference.removeUser();
             }
-
-            Database.getUser(LoginActivity.this, Const.Database.user, name, password);
         }
     }
 }

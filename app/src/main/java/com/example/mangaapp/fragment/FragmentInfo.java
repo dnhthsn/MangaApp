@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.mangaapp.activity.LoginActivity;
 import com.example.mangaapp.prevalent.Prevalent;
 import com.example.mangaapp.R;
 import com.example.mangaapp.activity.UpdateUserActivity;
@@ -24,14 +25,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class FragmentInfo extends Fragment {
-    public static String nameEdit = "name";
-    public static String phoneEdit = "phone";
-    public static String passEdit = "password";
-    public static String addressEdit = "address";
-    public static String genderEdit = "gender";
-
     private TextView nameInfo, passInfo, phoneInfo, addressInfo, genderInfo;
-    private Button editInfomation;
+    private Button editInfomation, logOut;
 
     @Nullable
     @Override
@@ -50,6 +45,7 @@ public class FragmentInfo extends Fragment {
         addressInfo = view.findViewById(R.id.address_info);
         genderInfo = view.findViewById(R.id.gender_info);
         editInfomation = view.findViewById(R.id.edit_information);
+        logOut = view.findViewById(R.id.log_out);
 
         String name = Prevalent.currentOnlineUser.getUserName();
 
@@ -77,11 +73,19 @@ public class FragmentInfo extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), UpdateUserActivity.class);
-                intent.putExtra(nameEdit, nameInfo.getText());
-                intent.putExtra(phoneEdit, phoneInfo.getText());
-                intent.putExtra(passEdit, passInfo.getText());
-                intent.putExtra(addressEdit, addressInfo.getText());
-                intent.putExtra(genderEdit, genderInfo.getText());
+                intent.putExtra(Const.Sender.name, nameInfo.getText());
+                intent.putExtra(Const.Sender.phone, phoneInfo.getText());
+                intent.putExtra(Const.Sender.password, passInfo.getText());
+                intent.putExtra(Const.Sender.address, addressInfo.getText());
+                intent.putExtra(Const.Sender.gender, genderInfo.getText());
+                startActivity(intent);
+            }
+        });
+
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), LoginActivity.class);
                 startActivity(intent);
             }
         });

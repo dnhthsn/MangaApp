@@ -55,13 +55,13 @@ public class SignUpActivity extends AppCompatActivity {
         gender = genderRad.getText().toString();
 
         if (TextUtils.isEmpty(name)) {
-            Toast.makeText(this, "Please write your name...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, Const.Error.name, Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(phone)) {
-            Toast.makeText(this, "Please write your phone...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, Const.Error.phone, Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(password)) {
-            Toast.makeText(this, "Please write your password...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, Const.Error.password, Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(address)) {
-            Toast.makeText(this, "Please write your address...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, Const.Error.address, Toast.LENGTH_SHORT).show();
         } else {
             Database.addUser(SignUpActivity.this, Const.Database.user, name, phone, password, address, gender);
         }

@@ -3,36 +3,36 @@ package com.example.mangaapp.model;
 import java.io.Serializable;
 
 public class Users implements Serializable {
-    private String userName, userPhone, userPassword, userAddress, userGender;
+    private String name, phone, password, address, gender;
 
     public Users() {
     }
 
-    public Users(String userName, String userPhone, String userPassword, String userAddress, String userGender) {
-        this.userName = userName;
-        this.userPhone = userPhone;
-        this.userPassword = userPassword;
-        this.userAddress = userAddress;
-        this.userGender = userGender;
+    public Users(String name, String phone, String password, String address, String gender) {
+        this.name = name;
+        this.phone = phone;
+        this.password = password;
+        this.address = address;
+        this.gender = gender;
     }
 
     public String getUserName() {
-        return userName;
+        return name;
     }
 
     public String getUserPhone() {
-        return userPhone;
+        return phone;
     }
 
     public String getUserPassword() {
-        return userPassword;
+        return password;
     }
 
     public String getUserAddress() {
-        return userAddress;
+        return address;
     }
 
     public String getUserGender() {
-        return userGender;
+        return gender;
     }
 }
