@@ -47,7 +47,7 @@ public class FragmentInfo extends Fragment {
         editInfomation = view.findViewById(R.id.edit_information);
         logOut = view.findViewById(R.id.log_out);
 
-        String name = Prevalent.currentOnlineUser.getUserName();
+        String name = Prevalent.currentOnlineUser.getName();
 
         final DatabaseReference rootFref;
         rootFref = FirebaseDatabase.getInstance().getReference();
@@ -56,11 +56,11 @@ public class FragmentInfo extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Users usersData = snapshot.child(Const.Database.user).child(name).getValue(Users.class);
-                nameInfo.setText(usersData.getUserName());
-                phoneInfo.setText(usersData.getUserPhone());
-                passInfo.setText(usersData.getUserPassword());
-                addressInfo.setText(usersData.getUserAddress());
-                genderInfo.setText(usersData.getUserGender());
+                nameInfo.setText(usersData.getName());
+                phoneInfo.setText(usersData.getPhone());
+                passInfo.setText(usersData.getPassword());
+                addressInfo.setText(usersData.getAddress());
+                genderInfo.setText(usersData.getGender());
             }
 
             @Override

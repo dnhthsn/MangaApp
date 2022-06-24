@@ -62,13 +62,13 @@ public class UpdateUserActivity extends AppCompatActivity {
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
                         .child(Const.Database.user);
                 HashMap<String, Object> userMap = new HashMap<>();
-                userMap.put("userAddress", inputAddress.getText());
-                userMap.put("userGender", uGender);
-                userMap.put("userName", inputName.getText());
-                userMap.put("userPassword", inputPassword.getText());
-                userMap.put("userPhone", inputPhone.getText());
+                userMap.put(Const.Database.address, inputAddress.getText().toString());
+                userMap.put(Const.Database.gender, uGender);
+                userMap.put(Const.Database.name, inputName.getText().toString());
+                userMap.put(Const.Database.password, inputPassword.getText().toString());
+                userMap.put(Const.Database.phone, inputPhone.getText().toString());
 
-                reference.child(Prevalent.currentOnlineUser.getUserName()).updateChildren(userMap);
+                reference.child(Prevalent.currentOnlineUser.getName()).updateChildren(userMap);
 
                 startActivity(new Intent(UpdateUserActivity.this, LoginActivity.class));
                 Toast.makeText(UpdateUserActivity.this, Const.Success.update, Toast.LENGTH_SHORT).show();

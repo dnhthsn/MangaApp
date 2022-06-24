@@ -16,23 +16,23 @@ public class Users implements Serializable {
         this.gender = gender;
     }
 
-    public String getUserName() {
+    public String getName() {
         return name;
     }
 
-    public String getUserPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public String getUserPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public String getUserAddress() {
+    public String getAddress() {
         return address;
     }
 
-    public String getUserGender() {
+    public String getGender() {
         return gender;
     }
 }

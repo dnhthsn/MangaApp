@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -65,7 +66,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        nameHeader.setText(Prevalent.currentOnlineUser.getUserName());
+        if (!TextUtils.isEmpty(Prevalent.currentOnlineUser.getName())){
+            nameHeader.setText(Prevalent.currentOnlineUser.getName());
+        }
 
         setSupportActionBar(mToolBar);
 

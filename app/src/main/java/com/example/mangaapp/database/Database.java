@@ -73,8 +73,8 @@ public class Database {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.child(databaseName).child(name).exists()) {
                     Users usersData = snapshot.child(databaseName).child(name).getValue(Users.class);
-                    if (usersData.getUserName().equals(name)) {
-                        if (usersData.getUserPassword().equals(password)) {
+                    if (usersData.getName().equals(name)) {
+                        if (usersData.getPassword().equals(password)) {
                             Toast.makeText(context, Const.Success.login, Toast.LENGTH_SHORT).show();
 
                             Intent intent = new Intent(context, MainActivity.class);

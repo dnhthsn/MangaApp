@@ -29,7 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FragmentHome extends Fragment implements MangaAdapter.ItemClickListener{
+public class FragmentHome extends Fragment implements MangaAdapter.ItemClickListener {
     private String SWITCH_PREF = "switch_pref";
     private String SWITCH_STATE = "switch_state";
     private Boolean switch_state;
@@ -68,7 +68,7 @@ public class FragmentHome extends Fragment implements MangaAdapter.ItemClickList
         mangaRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot:snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Mangas manga = dataSnapshot.getValue(Mangas.class);
                     mangas.add(manga);
                 }

@@ -65,10 +65,10 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             if (rememberUser.isChecked()) {
                 SharedPreference.saveUser(name, password);
-                Database.getUser(LoginActivity.this, Const.Database.user, name, password);
             } else {
                 SharedPreference.removeUser();
             }
+            Database.getUser(LoginActivity.this, Const.Database.user, name, password);
         }
     }
 }
