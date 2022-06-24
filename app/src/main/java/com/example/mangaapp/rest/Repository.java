@@ -50,10 +50,10 @@ public class Repository {
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (!snapshot.child(databaseName).child(users.getName()).exists()) {
-                    databaseReference.child(databaseName).child(users.getName()).setValue(users);
-                } else {
+                if (snapshot.child(databaseName).child(users.getName()).exists()) {
                     Toast.makeText(context, Const.Error.existed, Toast.LENGTH_SHORT).show();
+                } else {
+                    databaseReference.child(databaseName).child(users.getName()).setValue(users);
                 }
             }
 
