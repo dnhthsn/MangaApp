@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.mangaapp.prevalent.Prevalent;
 import com.example.mangaapp.R;
 import com.example.mangaapp.database.Database;
 import com.example.mangaapp.sharedpreferences.SharedPreference;

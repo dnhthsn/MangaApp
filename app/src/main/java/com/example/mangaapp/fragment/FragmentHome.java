@@ -30,17 +30,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FragmentHome extends Fragment implements MangaAdapter.ItemClickListener {
-    private String SWITCH_PREF = "switch_pref";
-    private String SWITCH_STATE = "switch_state";
-    private Boolean switch_state;
-
     private RecyclerView mangaList;
 
     private MangaAdapter mangaAdapter;
     private List<Mangas> mangas;
     private DatabaseReference mangaRef;
-    private SharedPreferences switchPref;
-    private SharedPreferences.Editor switchEdit;
 
     @Nullable
     @Override
@@ -54,11 +48,6 @@ public class FragmentHome extends Fragment implements MangaAdapter.ItemClickList
         super.onViewCreated(view, savedInstanceState);
 
         mangaList = view.findViewById(R.id.mangas_list);
-
-        switchPref = getActivity().getSharedPreferences(SWITCH_PREF, Context.MODE_PRIVATE);
-        switchEdit = getActivity().getSharedPreferences(SWITCH_PREF, Context.MODE_PRIVATE).edit();
-
-        switch_state = switchPref.getBoolean(SWITCH_STATE, false);
 
         mangas = new ArrayList<>();
         mangaAdapter = new MangaAdapter(mangas);
@@ -81,7 +70,7 @@ public class FragmentHome extends Fragment implements MangaAdapter.ItemClickList
             }
         });
 
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false);
         mangaList.setLayoutManager(layoutManager);
         mangaAdapter.setItemClickListener(FragmentHome.this);
         mangaList.setAdapter(mangaAdapter);

@@ -24,6 +24,9 @@
         <entry key="app/src/main/res/layout/fragment_info.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.25" />
         <entry key="app/src/main/res/layout/header_navigation.xml" value="0.14361702127659576" />
+        <entry key="app/src/main/res/layout/item_chapter.xml" value="0.15070921985815602" />
+        <entry key="app/src/main/res/layout/item_favourite.xml" value="0.15070921985815602" />
+        <entry key="app/src/main/res/layout/item_manga.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/manga_item.xml" value="0.25" />
         <entry key="app/src/main/res/menu/menu_navigation.xml" value="0.2907692307692308" />
       </map>

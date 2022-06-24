@@ -20,18 +20,15 @@ import android.widget.TextView;
 
 import com.example.mangaapp.prevalent.Prevalent;
 import com.example.mangaapp.R;
-import com.example.mangaapp.fragment.FragmentFavourite;
 import com.example.mangaapp.fragment.FragmentHome;
 import com.example.mangaapp.fragment.FragmentInfo;
-import com.example.mangaapp.util.Const;
 import com.google.android.material.navigation.NavigationView;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private final int FRAGMENT_HOME_INDEX = 0;
-    private final int FRAGMENT_FAVOURITE_INDEX = 1;
-    private final int FRAGMENT_INFO_INDEX = 2;
+    private final int FRAGMENT_INFO_INDEX = 1;
     private int SELECT_IMAGE_CODE = 1;
 
     private DrawerLayout mDrawerLayout;
@@ -66,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        if (!TextUtils.isEmpty(Prevalent.currentOnlineUser.getName())){
+        if (!TextUtils.isEmpty(Prevalent.currentOnlineUser.getName())) {
             nameHeader.setText(Prevalent.currentOnlineUser.getName());
         }
 
@@ -90,11 +87,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             if (currentFragment != FRAGMENT_HOME_INDEX) {
                 ReplaceFragment(new FragmentHome());
                 currentFragment = FRAGMENT_HOME_INDEX;
-            }
-        } else if (id == R.id.nav_favourite) {
-            if (currentFragment != FRAGMENT_FAVOURITE_INDEX) {
-                ReplaceFragment(new FragmentFavourite());
-                currentFragment = FRAGMENT_FAVOURITE_INDEX;
             }
         } else if (id == R.id.nav_info) {
             if (currentFragment != FRAGMENT_INFO_INDEX) {

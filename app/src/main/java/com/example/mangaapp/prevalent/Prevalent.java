@@ -8,5 +8,4 @@ import java.util.List;
 
 public class Prevalent {
     public static Users currentOnlineUser;
-    public static List<Mangas> favouriteMangas = new ArrayList<>();
 }

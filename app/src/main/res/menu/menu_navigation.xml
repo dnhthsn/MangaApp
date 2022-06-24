@@ -8,11 +8,6 @@
             android:icon="@drawable/ic_baseline_home_24"
             android:title="@string/nav_home" />
 
-        <item
-            android:id="@+id/nav_favourite"
-            android:icon="@drawable/ic_baseline_favorite_24"
-            android:title="@string/nav_favourite" />
-
     </group>
 
     <item android:title="@string/nav_account">
