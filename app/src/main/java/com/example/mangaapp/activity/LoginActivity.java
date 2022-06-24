@@ -23,7 +23,7 @@ import com.example.mangaapp.util.Const;
 
 import java.util.List;
 
-public class LoginActivity extends AppCompatActivity implements Callback {
+public class LoginActivity extends AppCompatActivity {
     private String name, pass;
 
     private EditText inputName, inputPassword;
@@ -45,7 +45,41 @@ public class LoginActivity extends AppCompatActivity implements Callback {
         rememberUser = findViewById(R.id.remember_user);
 
         repository = new Repository();
-        repository.getUser(Const.Database.user, this);
+        repository.getUser(Const.Database.user, new Callback() {
+            @Override
+            public void getUser(List<Users> list) {
+                super.getUser(list);
+                clickLogin.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String name = inputName.getText().toString();
+                        String password = inputPassword.getText().toString();
+                        if (TextUtils.isEmpty(name)) {
+                            Toast.makeText(LoginActivity.this, Const.Error.name, Toast.LENGTH_SHORT).show();
+                        } else if (TextUtils.isEmpty(password)) {
+                            Toast.makeText(LoginActivity.this, Const.Error.password, Toast.LENGTH_SHORT).show();
+                        } else {
+                            if (rememberUser.isChecked()) {
+                                SharedPreference.saveUser(name, password);
+                            } else {
+                                SharedPreference.removeUser();
+                            }
+                            for (Users users : list) {
+                                if (users.getName().equals(name) && users.getPassword().equals(password)) {
+                                    Toast.makeText(LoginActivity.this, Const.Success.login, Toast.LENGTH_SHORT).show();
+
+                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                    Prevalent.currentOnlineUser = users;
+                                    startActivity(intent);
+                                } else {
+                                    Toast.makeText(LoginActivity.this, Const.Error.passIncorrect, Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
 
         SharedPreference.sharedPreferences = getSharedPreferences("dataLogin", MODE_PRIVATE);
         name = SharedPreference.sharedPreferences.getString(Const.Sender.name, "");
@@ -60,39 +94,6 @@ public class LoginActivity extends AppCompatActivity implements Callback {
         createAccount.setOnClickListener(view -> {
             Intent intent1 = new Intent(LoginActivity.this, SignUpActivity.class);
             startActivity(intent1);
-        });
-    }
-
-    @Override
-    public void getUser(List<Users> list) {
-        clickLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String name = inputName.getText().toString();
-                String password = inputPassword.getText().toString();
-                if (TextUtils.isEmpty(name)) {
-                    Toast.makeText(LoginActivity.this, Const.Error.name, Toast.LENGTH_SHORT).show();
-                } else if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(LoginActivity.this, Const.Error.password, Toast.LENGTH_SHORT).show();
-                } else {
-                    if (rememberUser.isChecked()) {
-                        SharedPreference.saveUser(name, password);
-                    } else {
-                        SharedPreference.removeUser();
-                    }
-                    for (Users users : list) {
-                        if (users.getName().equals(name) && users.getPassword().equals(password)) {
-                            Toast.makeText(LoginActivity.this, Const.Success.login, Toast.LENGTH_SHORT).show();
-
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                            Prevalent.currentOnlineUser = users;
-                            startActivity(intent);
-                        } else {
-                            Toast.makeText(LoginActivity.this, Const.Error.passIncorrect, Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }
-            }
         });
     }
 }
