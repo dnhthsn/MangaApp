@@ -49,15 +49,21 @@ public class SignUpActivity extends AppCompatActivity {
                 RadioButton genderRad = findViewById(genderGrID);
                 String gender = genderRad.getText().toString();
 
-                if(TextUtils.isEmpty(name)){
+                if (TextUtils.isEmpty(name)) {
                     Toast.makeText(SignUpActivity.this, Const.Error.name, Toast.LENGTH_SHORT).show();
+                } else if (TextUtils.isEmpty(phone)) {
+                    Toast.makeText(SignUpActivity.this, Const.Error.phone, Toast.LENGTH_SHORT).show();
+                } else if (TextUtils.isEmpty(password)) {
+                    Toast.makeText(SignUpActivity.this, Const.Error.password, Toast.LENGTH_SHORT).show();
+                } else if (TextUtils.isEmpty(address)) {
+                    Toast.makeText(SignUpActivity.this, Const.Error.address, Toast.LENGTH_SHORT).show();
+                } else {
+                    Users users = new Users(name, phone, password, address, gender);
+                    repository.addUser(Const.Database.user, users, SignUpActivity.this);
+                    Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                    intent.putExtra(Const.Sender.name, name);
+                    startActivity(intent);
                 }
-
-                Users users = new Users(name, phone, password, address, gender);
-                repository.addUser(Const.Database.user, users, SignUpActivity.this);
-                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
-                intent.putExtra(Const.Sender.name, name);
-                startActivity(intent);
             }
         });
     }
