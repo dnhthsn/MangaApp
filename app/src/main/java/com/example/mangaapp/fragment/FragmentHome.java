@@ -60,33 +60,12 @@ public class FragmentHome extends Fragment implements MangaAdapter.ItemClickList
             @Override
             public void getManga(List<Mangas> list) {
                 super.getManga(list);
-                for(Mangas manga : list){
-                    String name = manga.getNameManga();
-                    String image = manga.getImgManga();
-                    String chapters = manga.getChapters();
-                    Mangas mangas1 = new Mangas(image, name, chapters);
-                    mangas.add(mangas1);
+                for (Mangas manga : list){
+                    mangas.add(manga);
                 }
+                mangaAdapter.notifyDataSetChanged();
             }
         });
-
-//        mangaRef = FirebaseDatabase.getInstance().getReference().child(Const.Database.manga);
-//
-//        mangaRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-//                    Mangas manga = dataSnapshot.getValue(Mangas.class);
-//                    mangas.add(manga);
-//                }
-//                mangaAdapter.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
 
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(), 3, GridLayoutManager.VERTICAL, false);
         mangaList.setLayoutManager(layoutManager);
