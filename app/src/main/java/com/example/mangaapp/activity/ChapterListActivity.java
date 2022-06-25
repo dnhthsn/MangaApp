@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 
 import com.example.mangaapp.R;
 import com.example.mangaapp.fragment.FragmentHome;
@@ -21,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ChapterListActivity extends AppCompatActivity {
     private WebView chapterWeb;
+    private ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,7 @@ public class ChapterListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chapter_list);
 
         chapterWeb = findViewById(R.id.chapter_web);
+        back = findViewById(R.id.back);
 
         Intent intent = getIntent();
         String nameManga = intent.getStringExtra(Const.Sender.mangaName);
@@ -49,6 +53,13 @@ public class ChapterListActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }

@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
                                     startActivity(intent);
                                     break;
                                 } else {
-                                    Toast.makeText(LoginActivity.this, Const.Error.passIncorrect, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(LoginActivity.this, Const.Error.information, Toast.LENGTH_SHORT).show();
                                 }
                             }
                         }

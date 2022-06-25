@@ -25,8 +25,7 @@ public interface Const {
         String password = "Please write your password...";
         String phone = "Please write your phone...";
         String address = "Please write your address...";
-        String passIncorrect = "Password is incorrect";
-        String nameIncorrect = "Name is incorrect";
+        String information = "Wrong information";
         String network = "Network Error: Please try again...";
         String existed = "already exists";
     }

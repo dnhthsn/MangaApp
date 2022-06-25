@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.example.mangaapp.model.Mangas;
 import com.example.mangaapp.model.Users;
 import com.example.mangaapp.util.Const;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -83,5 +84,26 @@ public class Repository {
 
             }
         });
+    }
+
+    public void getManga(String databaseName, Callback callback){
+        ValueEventListener postListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                List<Mangas> list = new ArrayList<>();
+                Mangas mangas;
+                for (DataSnapshot data : snapshot.getChildren()) {
+                    mangas = data.getValue(Mangas.class);
+                    list.add(mangas);
+                }
+                callback.getManga(list);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        };
+        databaseReference.child(databaseName).addValueEventListener(postListener);
     }
 }

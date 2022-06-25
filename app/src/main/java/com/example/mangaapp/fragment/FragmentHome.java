@@ -18,6 +18,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.mangaapp.adapter.MangaAdapter;
 import com.example.mangaapp.R;
 import com.example.mangaapp.activity.ChapterListActivity;
+import com.example.mangaapp.model.Users;
+import com.example.mangaapp.rest.Callback;
+import com.example.mangaapp.rest.Repository;
 import com.example.mangaapp.util.Const;
 import com.example.mangaapp.model.Mangas;
 import com.google.firebase.database.DataSnapshot;
@@ -35,6 +38,7 @@ public class FragmentHome extends Fragment implements MangaAdapter.ItemClickList
     private MangaAdapter mangaAdapter;
     private List<Mangas> mangas;
     private DatabaseReference mangaRef;
+    private Repository repository;
 
     @Nullable
     @Override
@@ -50,28 +54,43 @@ public class FragmentHome extends Fragment implements MangaAdapter.ItemClickList
         mangaList = view.findViewById(R.id.mangas_list);
 
         mangas = new ArrayList<>();
-        mangaAdapter = new MangaAdapter(mangas);
 
-        mangaRef = FirebaseDatabase.getInstance().getReference().child(Const.Database.manga);
-
-        mangaRef.addValueEventListener(new ValueEventListener() {
+        repository = new Repository();
+        repository.getManga(Const.Database.manga, new Callback() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    Mangas manga = dataSnapshot.getValue(Mangas.class);
-                    mangas.add(manga);
+            public void getManga(List<Mangas> list) {
+                super.getManga(list);
+                for(Mangas manga : list){
+                    String name = manga.getNameManga();
+                    String image = manga.getImgManga();
+                    String chapters = manga.getChapters();
+                    Mangas mangas1 = new Mangas(image, name, chapters);
+                    mangas.add(mangas1);
                 }
-                mangaAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
 
+//        mangaRef = FirebaseDatabase.getInstance().getReference().child(Const.Database.manga);
+//
+//        mangaRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+//                    Mangas manga = dataSnapshot.getValue(Mangas.class);
+//                    mangas.add(manga);
+//                }
+//                mangaAdapter.notifyDataSetChanged();
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(), 3, GridLayoutManager.VERTICAL, false);
         mangaList.setLayoutManager(layoutManager);
+        mangaAdapter = new MangaAdapter(mangas);
         mangaAdapter.setItemClickListener(FragmentHome.this);
         mangaList.setAdapter(mangaAdapter);
     }
