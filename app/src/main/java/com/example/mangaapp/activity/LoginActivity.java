@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         rememberUser = findViewById(R.id.remember_user);
 
         repository = new Repository();
-        repository.getUser(Const.Database.user, new Callback() {
+        repository.getUser(new Callback() {
             @Override
             public void getUser(List<Users> list) {
                 super.getUser(list);

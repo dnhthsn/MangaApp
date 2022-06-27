@@ -59,7 +59,11 @@ public class ChapterListActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                if (chapterWeb.canGoBack()) {
+                    chapterWeb.goBack();
+                } else {
+                    finish();
+                }
             }
         });
     }

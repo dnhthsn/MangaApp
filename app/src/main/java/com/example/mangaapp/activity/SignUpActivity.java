@@ -59,7 +59,7 @@ public class SignUpActivity extends AppCompatActivity {
                     Toast.makeText(SignUpActivity.this, Const.Error.address, Toast.LENGTH_SHORT).show();
                 } else {
                     Users users = new Users(name, phone, password, address, gender);
-                    repository.addUser(Const.Database.user, users, SignUpActivity.this);
+                    repository.addUser(users, SignUpActivity.this);
                     Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
                     intent.putExtra(Const.Sender.name, name);
                     startActivity(intent);

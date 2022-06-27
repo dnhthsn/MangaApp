@@ -56,7 +56,7 @@ public class FragmentHome extends Fragment implements MangaAdapter.ItemClickList
         mangas = new ArrayList<>();
 
         repository = new Repository();
-        repository.getManga(Const.Database.manga, new Callback() {
+        repository.getManga(new Callback() {
             @Override
             public void getManga(List<Mangas> list) {
                 super.getManga(list);

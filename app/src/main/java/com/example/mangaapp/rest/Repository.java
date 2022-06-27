@@ -30,7 +30,7 @@ public class Repository {
         this.databaseReference = db.getReference();
     }
 
-    public void getUser(String databaseName, Callback callback) {
+    public void getUser(Callback callback) {
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -48,14 +48,14 @@ public class Repository {
 
             }
         };
-        databaseReference.child(databaseName).addValueEventListener(postListener);
+        databaseReference.child(Const.Database.user).addValueEventListener(postListener);
     }
 
-    public void addUser(String databaseName, Users users, Context context) {
+    public void addUser(Users users, Context context) {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (!snapshot.child(databaseName).child(users.getName()).exists()) {
+                if (!snapshot.child(Const.Database.user).child(users.getName()).exists()) {
                     HashMap<String, Object> userdataMap = new HashMap<>();
                     userdataMap.put(Const.Database.name, users.getName());
                     userdataMap.put(Const.Database.password, users.getPassword());
@@ -63,7 +63,7 @@ public class Repository {
                     userdataMap.put(Const.Database.address, users.getAddress());
                     userdataMap.put(Const.Database.gender, users.getGender());
 
-                    databaseReference.child(databaseName).child(users.getName()).updateChildren(userdataMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    databaseReference.child(Const.Database.user).child(users.getName()).updateChildren(userdataMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
@@ -86,7 +86,7 @@ public class Repository {
         });
     }
 
-    public void getManga(String databaseName, Callback callback){
+    public void getManga(Callback callback){
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -104,6 +104,6 @@ public class Repository {
 
             }
         };
-        databaseReference.child(databaseName).addValueEventListener(postListener);
+        databaseReference.child(Const.Database.manga).addValueEventListener(postListener);
     }
 }
