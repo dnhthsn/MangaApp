@@ -44,7 +44,7 @@ public class ChapterListActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Mangas mangasData = snapshot.child(Const.Database.manga).child(nameManga).getValue(Mangas.class);
                 chapterWeb.setWebViewClient(new WebViewClient());
-                chapterWeb.loadUrl(mangasData.getChapters());
+                chapterWeb.loadUrl("https://devminigame.ewings.vn/landing/");
 
                 WebSettings webSettings = chapterWeb.getSettings();
                 webSettings.setJavaScriptEnabled(true);
